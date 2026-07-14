@@ -1,0 +1,94 @@
+-- ============================================================================
+--  Volt FFlag performance pack  (auto-installed by volt-headless)
+--  Edit freely -- volt-headless will NOT overwrite this file once it exists.
+--  Delete it to regenerate the default on next launch.
+--  Aggressive: expect visual degradation. Low-end graphics for headless use.
+--  Format: setfflag("name", "value")  (both strings)
+-- ============================================================================
+
+-- Frame rate / task scheduler ------------------------------------------------
+setfflag("FFlagTaskSchedulerBlocking", "false")          -- non-blocking waits
+setfflag("FFlagTaskSchedulerLimitTargetFpsTo2402", "false")
+setfflag("FFlagHandleAltEnterFullscreenManually", "false")
+setfflag("DFFlagThrottleRenderUntilGameLoaded", "false") -- don't gate render on loading
+setfflag("DFIntTaskSchedulerTargetFps", "15")            -- cap internal scheduler target fps
+
+-- Graphics backend (force the DXVK path) -------------------------------------
+setfflag("FFlagDebugGraphicsPreferD3D11", "true")        -- DXVK best path on Wine
+setfflag("FFlagDebugGraphicsDisableD3D10", "true")
+setfflag("FFlagDebugGraphicsDisableOpenGL", "true")
+setfflag("FFlagDebugGraphicsDisableVulkan", "true")
+setfflag("FFlagDebugGraphicsDisableMetal", "true")
+setfflag("FFlagDebugGraphicsDisableDirect3D11", "false") -- KEEP D3D11 enabled
+
+-- Quality / FRM (Frame Rate Manager) -----------------------------------------
+setfflag("DFIntDebugFRMQualityLevelOverride", "1")       -- force lowest internal quality
+setfflag("FFlagCommitToGraphicsQualityFix", "true")
+setfflag("FFlagFixGraphicsQuality", "true")
+setfflag("DFIntTextureQualityOverride", "1")             -- lowest texture quality
+setfflag("DFIntTextureCompositorActiveJobs", "0")        -- skip texture compositing
+
+-- Lighting / shadows / post-fx -----------------------------------------------
+setfflag("FFlagDisablePostFx", "true")                   -- no bloom, blur, DOF
+setfflag("FIntRenderShadowIntensity", "0")               -- no dynamic shadows
+setfflag("DFFlagDebugPauseVoxelizer", "true")            -- disable voxel lighting
+setfflag("DFFlagDebugRenderForceTechnologyVoxel", "true")
+setfflag("FFlagDebugSkyGray", "true")                    -- flat gray sky
+setfflag("FFlagFastGPULightCulling3", "true")
+setfflag("FIntDebugForceMSAASamples", "0")               -- no MSAA
+setfflag("FIntAntiAliasingMaxQuality", "0")
+setfflag("FFlagAntiAliasingEnabled", "false")
+
+-- Geometry / terrain / grass / CSG -------------------------------------------
+setfflag("FIntTerrainArraySliceSize", "4")
+setfflag("FIntFRMMinGrassDistance", "0")
+setfflag("FIntFRMMaxGrassDistance", "0")
+setfflag("DFIntCSGLevelOfDetailSwitchingDistance", "0")
+setfflag("DFIntCSGLevelOfDetailSwitchingDistanceL12", "0")
+setfflag("DFIntCSGLevelOfDetailSwitchingDistanceL23", "0")
+setfflag("DFIntCSGLevelOfDetailSwitchingDistanceL34", "0")
+
+-- Particles / smoke / effects ------------------------------------------------
+setfflag("DFIntParticleCloneLimit", "100")
+setfflag("FIntSmoothClusterMaxParticleEffectsPerFrame", "10")
+setfflag("DFIntRenderingThrottleDelayInMS", "100")
+
+-- Materials (empty material pack = solid colors) -----------------------------
+setfflag("FStringPartTexturePackTable2022", "")
+setfflag("FStringPartTexturePackTablePre2022", "")
+setfflag("FStringTerrainMaterialTablePre2022", "")
+setfflag("FStringTerrainMaterialTable2022", "")
+
+-- Animation LOD --------------------------------------------------------------
+setfflag("DFIntCharacterAnimationLodFullDistance", "0")
+setfflag("DFIntAnimationDistanceFactor", "0")
+
+-- Network / replication ------------------------------------------------------
+setfflag("DFIntDataSenderRate", "200")
+setfflag("DFIntPhysicsReplicationSenderRate", "200")
+setfflag("DFIntReplicationDataCacheNumWaitingPacketsLimit", "1024")
+setfflag("DFIntInterpolationAddSyncOffset", "0")
+setfflag("FIntRakNetResendRtt", "10")
+setfflag("DFFlagDebugBypassRakNetClient", "false")
+
+-- HTTP -----------------------------------------------------------------------
+setfflag("FFlagHttpClientJsonV2", "true")
+
+-- Memory ---------------------------------------------------------------------
+setfflag("DFIntMaxAvailablePhysicalMemoryMB", "8192")
+setfflag("DFIntMemStorageQueueSize", "10000")
+
+-- Misc -----------------------------------------------------------------------
+setfflag("DFIntSecondsBetweenDynamicVariableReloading", "99999")
+setfflag("FFlagAdServiceEnabled", "false")
+setfflag("FFlagDebugDisplayFPS", "true")
+setfflag("FFlagDebugForceFutureIsBrightPhase3", "false")
+setfflag("FIntTerrainOTAUpdatesPerFrame", "0")
+setfflag("FFlagDebugSimDefaultPrimalSolver", "true")
+
+-- Runtime hooks (applied after flags, since these need the game/services) ----
+pcall(function()
+    game:GetService("RunService"):Set3dRenderingEnabled(true)
+end)
+
+setfpscap(15)
