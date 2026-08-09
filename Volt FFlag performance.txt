@@ -91,4 +91,4 @@ pcall(function()
     game:GetService("RunService"):Set3dRenderingEnabled(true)
 end)
 
-setfpscap(10)
+setfpscap(15)
