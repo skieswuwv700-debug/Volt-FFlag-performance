@@ -75,7 +75,7 @@ setfflag("DFFlagDebugBypassRakNetClient", "false")
 setfflag("FFlagHttpClientJsonV2", "true")
 
 -- Memory ---------------------------------------------------------------------
-setfflag("DFIntMaxAvailablePhysicalMemoryMB", "8192")
+setfflag("DFIntMaxAvailablePhysicalMemoryMB", "1524")
 setfflag("DFIntMemStorageQueueSize", "10000")
 
 -- Misc -----------------------------------------------------------------------
@@ -91,4 +91,4 @@ pcall(function()
     game:GetService("RunService"):Set3dRenderingEnabled(true)
 end)
 
-setfpscap(15)
+setfpscap(12)
